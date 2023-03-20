@@ -1,11 +1,21 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Greetings</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<h1 style="color: blue">Hello You!</h1>
+<h1>Hello You!</h1>
 <a href="{% url 'simi' %}">Go to Simi</a>
+
+{% for post in posts %}
+<p>Post title: {{ post.title }}</p>
+<ul>
+    <li>Post body: {{ post.body }}</li>
+    <li>Created at: {{ post.created_at }} <br>By: {{ post.author }}</li>
+</ul>
+{% endfor %}
 </body>
 </html>
