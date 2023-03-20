@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.urls import reverse
 
 
 # Create your models here.
@@ -16,3 +17,5 @@ class Post(models.Model):
         string = f"""{self.title} -- {date}"""
         return string
 
+    def get_absolute_url(self):
+        return reverse('detail', args=[str(self.id)])

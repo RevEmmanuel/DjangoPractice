@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from blogApp.models import Post
-from django.views.generic import ListView
-from django.views.generic import DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic.edit import DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -21,6 +22,25 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blogApp/post_detail.html'
     context_object_name = 'post'
+
+
+class PostCreateView(CreateView):
+    model = Post
+    template_name = 'blogApp/post_new.html'
+    fields = {'title', 'body', 'author'}
+    # success_url = 'home'
+
+
+class DeletePostView(DeleteView):
+    model = Post
+    template_name = 'blogApp/post_delete.html'
+    success_url = reverse_lazy('home')
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'blogApp/post_edit.html'
+    fields = {'title', 'body'}
 
 
 def home(request):
