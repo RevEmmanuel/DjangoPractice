@@ -13,6 +13,7 @@
 {% else %}
 <a href="{% url 'login' %}">Login</a>
 {% endif %}
+<a href="{% url 'signup' %}">Signup</a>
 
     <a href="{% url 'new_post' %}">Create a new post</a>
     {% for post in posts %}
